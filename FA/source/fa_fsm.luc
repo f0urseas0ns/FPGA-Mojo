@@ -12,23 +12,25 @@ module fa_fsm (
   .clk(clk) {
     .rst(rst) {
     dff counter[27](.clk(clk),.rst(rst));
-  fsm state= {ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, ERROR};
+  fsm state= {ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, ERROR}; //8 cases of truth table with one error state
     }
   }
   
   always {
-    counter.d = counter.q + 1;
-    a = 0;
-    b = 0;
-    cin = 0;
-    statenow = 8h00;
-    case (state.q) {
+    counter.d = counter.q + 1;  //next state of clock
+    a = 0;    //initialise a as 0
+    b = 0;    // initialise b as 0
+    cin = 0;    //initialise cin as 0
+    statenow = 8h00;    //initialise led at 0
     
-      state.ONE:
+    case (state.q) {    // a b cin | s cout
+    
+      state.ONE:  // 0 0 0 | 0 0
       a = 0;
-      statenow = 8h00;
       b = 0;
       cin = 0;
+      statenow = 8h00;
+
       if (counter.q[26] == 1) {
         if (s != 0 || cout != 0) {
           state.d = state.ERROR;
@@ -37,7 +39,7 @@ module fa_fsm (
          }
         }
           
-      state.TWO:
+      state.TWO:  // 0 0 1 | 1 0
       a = 0;
       b = 0;
       cin = 1;
@@ -50,7 +52,7 @@ module fa_fsm (
           }
         }
       
-      state.THREE:
+      state.THREE:  // 0 1 0 | 1 0
       a = 0;
       b = 1;
       cin = 0;
@@ -63,7 +65,7 @@ module fa_fsm (
           } 
         }
       
-      state.FOUR:
+      state.FOUR:  // 0 1 1 | 0 1
       a = 0;
       b = 1;
       cin = 1;
@@ -76,7 +78,7 @@ module fa_fsm (
           }
         }
         
-      state.FIVE:
+      state.FIVE:  // 1 0 0 | 1 0
       a = 1;
       b = 0;
       cin = 0;
@@ -89,7 +91,7 @@ module fa_fsm (
           }
         }
           
-      state.SIX:
+      state.SIX:  // 1 0 1 | 0 1
       a = 1;
       b = 0;
       cin = 1;
@@ -103,7 +105,7 @@ module fa_fsm (
         }
 
           
-      state.SEVEN:
+      state.SEVEN:  // 1 1 0 | 1 0
       a = 1;
       b = 1;
       cin = 0;
@@ -117,7 +119,7 @@ module fa_fsm (
         }
        
                   
-      state.EIGHT:
+      state.EIGHT:  // 1 1 1 | 1 1
       a = 1;
       b = 1;
       cin = 1;
@@ -131,14 +133,13 @@ module fa_fsm (
         }
          
                  
-      state.ERROR:
+      state.ERROR: // Error
       a = 0;
       b = 0;
       cin = 0;
       statenow = 8hff;
-      state.d = state.ERROR;
-      
+      state.d = state.ERROR;      
+    }
+   }
   }
- }
-}
 

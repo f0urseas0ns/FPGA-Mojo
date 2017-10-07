@@ -31,9 +31,8 @@ module mojo_top (
     reset_conditioner reset_cond;
      .rst(rst){
       fa_fsm fa_fsm;
-      }
-     
-  }  
+      }     
+    }  
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -43,6 +42,7 @@ module mojo_top (
     io_led[0] = 8x{fa_fsm.cin};
     io_led[1] = 8x{fa_fsm.b};
     io_led[2] = 8x{fa_fsm.a};
+    
     a = fa_fsm.a;
     b = fa_fsm.b;
     cin = fa_fsm.cin;
