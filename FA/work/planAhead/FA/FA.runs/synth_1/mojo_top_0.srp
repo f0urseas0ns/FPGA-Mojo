@@ -1,0 +1,401 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> Reading design: mojo_top_0.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "mojo_top_0.prj"
+
+---- Target Parameters
+Target Device                      : xc6slx9tqg144-2
+Output File Name                   : "mojo_top_0.ngc"
+
+---- Source Options
+Top Module Name                    : mojo_top_0
+
+---- General Options
+Optimization Goal                  : speed
+Optimization Effort                : 1
+Netlist Hierarchy                  : rebuilt
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/reset_conditioner_1.v" into library work
+Parsing module <reset_conditioner_1>.
+Analyzing Verilog file "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/fa_fsm_2.v" into library work
+Parsing module <fa_fsm_2>.
+Analyzing Verilog file "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/mojo_top_0.v" into library work
+Parsing module <mojo_top_0>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <mojo_top_0>.
+
+Elaborating module <reset_conditioner_1>.
+
+Elaborating module <fa_fsm_2>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <mojo_top_0>.
+    Related source file is "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/mojo_top_0.v".
+WARNING:Xst:647 - Input <io_button> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <io_dip> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <cclk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_ss> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_mosi> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_sck> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <avr_tx> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <avr_rx_busy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit tristate buffer for signal <spi_miso> created at line 60
+    Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 60
+    Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 60
+    Found 1-bit tristate buffer for signal <spi_channel<1>> created at line 60
+    Found 1-bit tristate buffer for signal <spi_channel<0>> created at line 60
+    Found 1-bit tristate buffer for signal <avr_rx> created at line 60
+    Summary:
+	inferred   6 Tristate(s).
+Unit <mojo_top_0> synthesized.
+
+Synthesizing Unit <reset_conditioner_1>.
+    Related source file is "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/reset_conditioner_1.v".
+    Found 4-bit register for signal <M_stage_q>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <reset_conditioner_1> synthesized.
+
+Synthesizing Unit <fa_fsm_2>.
+    Related source file is "C:/Users/Thomas/Documents/mojo/FA/work/planAhead/FA/FA.srcs/sources_1/imports/verilog/fa_fsm_2.v".
+    Found 4-bit register for signal <M_state_q>.
+    Found 27-bit register for signal <M_counter_q>.
+    Found finite state machine <FSM_0> for signal <M_state_q>.
+    -----------------------------------------------------------------------
+    | States             | 9                                              |
+    | Transitions        | 25                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 11                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0000                                           |
+    | Power Up State     | 0000                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 27-bit adder for signal <M_counter_d> created at line 37.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  27 D-type flip-flop(s).
+	inferred   1 Finite State Machine(s).
+Unit <fa_fsm_2> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 27-bit adder                                          : 1
+# Registers                                            : 2
+ 27-bit register                                       : 1
+ 4-bit register                                        : 1
+# Tristates                                            : 6
+ 1-bit tristate buffer                                 : 6
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <fa_fsm_2>.
+The following registers are absorbed into counter <M_counter_q>: 1 register on signal <M_counter_q>.
+Unit <fa_fsm_2> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Counters                                             : 1
+ 27-bit up counter                                     : 1
+# Registers                                            : 4
+ Flip-Flops                                            : 4
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <M_state_q[1:4]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 0000
+ 0001  | 0001
+ 1000  | 1000
+ 0010  | 0010
+ 0011  | 0011
+ 0100  | 0100
+ 0101  | 0101
+ 0110  | 0110
+ 0111  | 0111
+-------------------
+
+Optimizing unit <mojo_top_0> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 0.
+FlipFlop reset_cond/M_stage_q_3 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 36
+ Flip-Flops                                            : 36
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : mojo_top_0.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 96
+#      GND                         : 3
+#      INV                         : 2
+#      LUT1                        : 26
+#      LUT2                        : 3
+#      LUT3                        : 1
+#      LUT6                        : 5
+#      MUXCY                       : 26
+#      MUXF7                       : 1
+#      VCC                         : 2
+#      XORCY                       : 27
+# FlipFlops/Latches                : 36
+#      FD                          : 1
+#      FDR                         : 30
+#      FDS                         : 5
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 56
+#      IBUF                        : 3
+#      OBUF                        : 47
+#      OBUFT                       : 6
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9tqg144-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              36  out of  11440     0%  
+ Number of Slice LUTs:                   37  out of   5720     0%  
+    Number used as Logic:                37  out of   5720     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     42
+   Number with an unused Flip Flop:       6  out of     42    14%  
+   Number with an unused LUT:             5  out of     42    11%  
+   Number of fully used LUT-FF pairs:    31  out of     42    73%  
+   Number of unique control sets:         3
+
+IO Utilization: 
+ Number of IOs:                          92
+ Number of bonded IOBs:                  57  out of    102    55%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 36    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 3.125ns (Maximum Frequency: 320.000MHz)
+   Minimum input arrival time before clock: 3.888ns
+   Maximum output required time after clock: 5.527ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.125ns (frequency: 320.000MHz)
+  Total number of paths / destination ports: 435 / 65
+-------------------------------------------------------------------------
+Delay:               3.125ns (Levels of Logic = 2)
+  Source:            fa_fsm/M_state_q_FSM_FFd4 (FF)
+  Destination:       fa_fsm/M_state_q_FSM_FFd4 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: fa_fsm/M_state_q_FSM_FFd4 to fa_fsm/M_state_q_FSM_FFd4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              14   0.525   1.355  M_state_q_FSM_FFd4 (M_state_q_FSM_FFd4)
+     LUT6:I3->O            1   0.235   0.682  M_state_q_FSM_FFd4-In11 (M_state_q_FSM_FFd4-In1)
+     LUT3:I2->O            1   0.254   0.000  M_state_q_FSM_FFd4_rstpot (M_state_q_FSM_FFd4_rstpot)
+     FD:D                      0.074          M_state_q_FSM_FFd4
+    ----------------------------------------
+    Total                      3.125ns (1.088ns logic, 2.037ns route)
+                                       (34.8% logic, 65.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 15 / 9
+-------------------------------------------------------------------------
+Offset:              3.888ns (Levels of Logic = 4)
+  Source:            s (PAD)
+  Destination:       fa_fsm/M_state_q_FSM_FFd4 (FF)
+  Destination Clock: clk rising
+
+  Data Path: s to fa_fsm/M_state_q_FSM_FFd4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             5   1.328   1.296  s_IBUF (s_IBUF)
+     begin scope: 'fa_fsm:s'
+     LUT6:I0->O            1   0.254   0.682  M_state_q_FSM_FFd4-In11 (M_state_q_FSM_FFd4-In1)
+     LUT3:I2->O            1   0.254   0.000  M_state_q_FSM_FFd4_rstpot (M_state_q_FSM_FFd4_rstpot)
+     FD:D                      0.074          M_state_q_FSM_FFd4
+    ----------------------------------------
+    Total                      3.888ns (1.910ns logic, 1.978ns route)
+                                       (49.1% logic, 50.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 38 / 35
+-------------------------------------------------------------------------
+Offset:              5.527ns (Levels of Logic = 3)
+  Source:            fa_fsm/M_state_q_FSM_FFd2 (FF)
+  Destination:       led<2> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: fa_fsm/M_state_q_FSM_FFd2 to led<2>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q             15   0.525   1.155  M_state_q_FSM_FFd2 (M_state_q_FSM_FFd2)
+     LUT2:I1->O            1   0.254   0.681  M_state_q_statenow<2>1 (statenow<2>)
+     end scope: 'fa_fsm:statenow<2>'
+     OBUF:I->O                 2.912          led_2_OBUF (led<2>)
+    ----------------------------------------
+    Total                      5.527ns (3.691ns logic, 1.836ns route)
+                                       (66.8% logic, 33.2% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    3.125|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.15 secs
+ 
+--> 
+
+Total memory usage is 233536 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    8 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

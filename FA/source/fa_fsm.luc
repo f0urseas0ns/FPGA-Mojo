@@ -1,0 +1,144 @@
+module fa_fsm (
+    input clk,  // clock
+    input rst,  // reset
+    output a,
+    output b,
+    output cin,
+    input s,
+    input cout,
+    output statenow[8]
+  ) {
+
+  .clk(clk) {
+    .rst(rst) {
+    dff counter[27](.clk(clk),.rst(rst));
+  fsm state= {ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, ERROR};
+    }
+  }
+  
+  always {
+    counter.d = counter.q + 1;
+    a = 0;
+    b = 0;
+    cin = 0;
+    statenow = 8h00;
+    case (state.q) {
+    
+      state.ONE:
+      a = 0;
+      statenow = 8h00;
+      b = 0;
+      cin = 0;
+      if (counter.q[26] == 1) {
+        if (s != 0 || cout != 0) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.TWO;
+         }
+        }
+          
+      state.TWO:
+      a = 0;
+      b = 0;
+      cin = 1;
+      statenow= 8h01;
+      if (counter.q[26] == 0) {
+        if (s != 1 || cout != 0) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.THREE;
+          }
+        }
+      
+      state.THREE:
+      a = 0;
+      b = 1;
+      cin = 0;
+      statenow = 8h02;
+      if (counter.q[26] == 1) {
+        if (s != 1 || cout != 0) {
+          state.d = state.ERROR;
+          }
+         else {state.d = state.FOUR;
+          } 
+        }
+      
+      state.FOUR:
+      a = 0;
+      b = 1;
+      cin = 1;
+      statenow=8h03;
+      if (counter.q[26] == 0) {
+        if (s != 0 || cout != 1) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.FIVE;
+          }
+        }
+        
+      state.FIVE:
+      a = 1;
+      b = 0;
+      cin = 0;
+      statenow = 8h04;
+      if (counter.q[26] == 1) {
+        if (s != 1 || cout != 0) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.SIX;
+          }
+        }
+          
+      state.SIX:
+      a = 1;
+      b = 0;
+      cin = 1;
+      statenow=8h05;
+      if (counter.q[26] == 0) {
+        if (s != 0 || cout != 1) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.SEVEN;
+          }
+        }
+
+          
+      state.SEVEN:
+      a = 1;
+      b = 1;
+      cin = 0;
+      statenow=8h06;
+      if (counter.q[26] == 1) {
+        if (s != 0 || cout != 1) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.EIGHT;
+          }
+        }
+       
+                  
+      state.EIGHT:
+      a = 1;
+      b = 1;
+      cin = 1;
+      statenow=8h07;
+      if (counter.q[26] == 0) {
+        if (s != 1 || cout != 1) {
+          state.d = state.ERROR;
+            }
+        else {state.d = state.ONE;
+          }
+        }
+         
+                 
+      state.ERROR:
+      a = 0;
+      b = 0;
+      cin = 0;
+      statenow = 8hff;
+      state.d = state.ERROR;
+      
+  }
+ }
+}
+
